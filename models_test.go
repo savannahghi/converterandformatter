@@ -1,16 +1,16 @@
-package converters_and_formatters_test
+package converterandformatter_test
 
 import (
 	"testing"
 
-	convertersandformatters "github.com/savannahghi/converters_and_formatters"
+	"github.com/savannahghi/converterandformatter"
 )
 
 func TestModelsIsEntity(t *testing.T) {
 
-	t12 := convertersandformatters.USSDSessionLog{}
+	t12 := converterandformatter.USSDSessionLog{}
 	t12.IsEntity()
 
-	t13 := convertersandformatters.PhoneOptIn{}
+	t13 := converterandformatter.PhoneOptIn{}
 	t13.IsEntity()
 }

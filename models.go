@@ -1,4 +1,4 @@
-package converters_and_formatters
+package converterandformatter
 
 // USSDSessionLog is used to persist a log of USSD sessions
 type USSDSessionLog struct {
