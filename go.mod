@@ -1,4 +1,4 @@
-module github.com/savannahghi/converters_and_formatters
+module github.com/savannahghi/converterandformatter
 
 go 1.16
 

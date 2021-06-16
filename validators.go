@@ -1,4 +1,4 @@
-package converters_and_formatters
+package converterandformatter
 
 import (
 	"context"
