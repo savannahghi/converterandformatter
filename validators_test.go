@@ -2,7 +2,10 @@ package converterandformatter_test
 
 import (
 	"context"
+	"fmt"
+	"log"
 	"math/rand"
+	"os"
 	"strconv"
 	"testing"
 	"time"
@@ -11,8 +14,46 @@ import (
 	uuid "github.com/kevinburke/go.uuid"
 	converterandformatter "github.com/savannahghi/converterandformatter"
 	"github.com/savannahghi/firebasetools"
+	"github.com/savannahghi/server_utils"
 	"github.com/stretchr/testify/assert"
 )
+
+// CoverageThreshold sets the test coverage threshold below which the tests will fail
+const CoverageThreshold = 0.75
+
+func TestMain(m *testing.M) {
+	os.Setenv("MESSAGE_KEY", "this-is-a-test-key$$$")
+	os.Setenv("ENVIRONMENT", "staging")
+	err := os.Setenv("ROOT_COLLECTION_SUFFIX", "staging")
+	if err != nil {
+		if server_utils.IsDebug() {
+			log.Printf("can't set root collection suffix in env: %s", err)
+		}
+		os.Exit(-1)
+	}
+	existingDebug, err := server_utils.GetEnvVar("DEBUG")
+	if err != nil {
+		existingDebug = "false"
+	}
+
+	os.Setenv("DEBUG", "true")
+
+	rc := m.Run()
+	// Restore DEBUG envar to original value after running test
+	os.Setenv("DEBUG", existingDebug)
+
+	// rc 0 means we've passed,
+	// and CoverMode will be non empty if run with -cover
+	if rc == 0 && testing.CoverMode() != "" {
+		c := testing.Coverage()
+		if c < CoverageThreshold {
+			fmt.Println("Tests passed but coverage failed at", c)
+			rc = -1
+		}
+	}
+
+	os.Exit(rc)
+}
 
 func TestIsMSISDNValid(t *testing.T) {
 

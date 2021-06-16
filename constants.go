@@ -5,8 +5,12 @@ const (
 
 	// OTPCollectionName is the name of the collection used to persist single
 	// use verification codes on Firebase
-	OTPCollectionName         = "otps"
-	PhoneOptInCollectionName  = "phone_opt_ins"
+	OTPCollectionName = "otps"
+
+	// PhoneOptInCollectionName ...
+	PhoneOptInCollectionName = "phone_opt_ins"
+
+	//USSDSessionCollectionName ...
 	USSDSessionCollectionName = "ussd_signup_sessions"
 
 	// AuthTokenContextKey is used to add/retrieve the Firebase UID on the context
