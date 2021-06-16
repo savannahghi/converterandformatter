@@ -43,7 +43,6 @@ func NormalizeMSISDN(msisdn string) (*string, error) {
 
 // ValidateMSISDN returns an error if the MSISDN format is wrong or the
 // supplied verification code is not valid
-
 // Deprecated: Should implement `VerifyOTP` instead. This helps to confirm if a phonenumber
 // is valid by verifying the code sent to it.
 func ValidateMSISDN(
