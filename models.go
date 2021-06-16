@@ -6,8 +6,14 @@ type USSDSessionLog struct {
 	SessionID string `json:"sessionID" firestore:"sessionID"`
 }
 
+//IsEntity ...
+func (p PhoneOptIn) IsEntity() {}
+
 // PhoneOptIn is used to persist and manage phone communication whitelists
 type PhoneOptIn struct {
 	MSISDN  string `json:"msisdn" firestore:"msisdn"`
 	OptedIn bool   `json:"optedIn" firestore:"optedIn"`
 }
+
+//IsEntity ...
+func (p USSDSessionLog) IsEntity() {}
