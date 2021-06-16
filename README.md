@@ -1,11 +1,11 @@
 # Converters and Formatters
-`converters_and_formatters` is a utils package that contains helper functions that takes an input and transforms it to a different output
+`converterandformatter` is a utils package that contains helper functions that takes an input and transforms it to a different output
 
 ### Installing it
-converters_and_formatters is compatible with modern Go releases in module mode, with Go installed:
+converterandformatter is compatible with modern Go releases in module mode, with Go installed:
 
 ```bash
-go get -u github.com/savannahghi/converters_and_formatters
+go get -u github.com/savannahghi/converterandformatter
 
 ```
 will resolve and add the package to the current development module, along with its dependencies.
@@ -13,12 +13,12 @@ will resolve and add the package to the current development module, along with i
 Alternatively the same can be achieved if you use import in a package:
 
 ```go
-import "github.com/savannahghi/converters_and_formatters"
+import "github.com/savannahghi/converterandformatter"
 
 ```
 and run `go get` without parameters.
 
-The package name is `converters_and_formatters`
+The package name is `converterandformatter`
 
 
 ### Developing
@@ -72,7 +72,7 @@ straightforward. See [`CONTRIBUTING.md`](CONTRIBUTING.md) for details.
 
 ## Versioning ##
 
-In general, converters_and_formatters follows [semver](https://semver.org/) as closely as we
+In general, converterandformatter follows [semver](https://semver.org/) as closely as we
 can for tagging releases of the package. For self-contained libraries, the
 application of semantic versioning is relatively straightforward and generally
 understood. We've adopted the following

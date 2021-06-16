@@ -1,4 +1,4 @@
-package converters_and_formatters_test
+package converterandformatter_test
 
 import (
 	"context"
@@ -9,7 +9,7 @@ import (
 
 	"cloud.google.com/go/firestore"
 	uuid "github.com/kevinburke/go.uuid"
-	convertersandformatters "github.com/savannahghi/converters_and_formatters"
+	converterandformatter "github.com/savannahghi/converterandformatter"
 	"github.com/savannahghi/firebasetools"
 	"github.com/stretchr/testify/assert"
 )
@@ -95,7 +95,7 @@ func TestIsMSISDNValid(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := convertersandformatters.IsMSISDNValid(tt.msisdn); got != tt.want {
+			if got := converterandformatter.IsMSISDNValid(tt.msisdn); got != tt.want {
 				t.Errorf("IsMSISDNValid() = %v, want %v", got, tt.want)
 			}
 		})
@@ -147,7 +147,7 @@ func TestNormalizeMSISDN(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := convertersandformatters.NormalizeMSISDN(tt.args.msisdn)
+			got, err := converterandformatter.NormalizeMSISDN(tt.args.msisdn)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("NormalizeMSISDN() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -164,12 +164,12 @@ func TestValidateMSISDN(t *testing.T) {
 	firebaseApp, err := fc.InitFirebase()
 	assert.Nil(t, err)
 
-	ctx := convertersandformatters.GetAuthenticatedContext(t)
+	ctx := converterandformatter.GetAuthenticatedContext(t)
 	firestoreClient, err := firebaseApp.Firestore(ctx)
 	assert.Nil(t, err)
 
 	otpMsisdn := "+254722000000"
-	normalized, err := convertersandformatters.NormalizeMSISDN(otpMsisdn)
+	normalized, err := converterandformatter.NormalizeMSISDN(otpMsisdn)
 	assert.Nil(t, err)
 
 	validOtpCode := rand.Int()
@@ -180,7 +180,7 @@ func TestValidateMSISDN(t *testing.T) {
 		"msisdn":            normalized,
 		"timestamp":         time.Now(),
 	}
-	_, err = firebasetools.SaveDataToFirestore(firestoreClient, firebasetools.SuffixCollection(convertersandformatters.OTPCollectionName), validOtpData)
+	_, err = firebasetools.SaveDataToFirestore(firestoreClient, firebasetools.SuffixCollection(converterandformatter.OTPCollectionName), validOtpData)
 	assert.Nil(t, err)
 
 	invalidOtpCode := rand.Int()
@@ -191,7 +191,7 @@ func TestValidateMSISDN(t *testing.T) {
 		"msisdn":            normalized,
 		"timestamp":         time.Now(),
 	}
-	_, err = firebasetools.SaveDataToFirestore(firestoreClient, firebasetools.SuffixCollection(convertersandformatters.OTPCollectionName), invalidOtpData)
+	_, err = firebasetools.SaveDataToFirestore(firestoreClient, firebasetools.SuffixCollection(converterandformatter.OTPCollectionName), invalidOtpData)
 	assert.Nil(t, err)
 
 	type args struct {
@@ -261,7 +261,7 @@ func TestValidateMSISDN(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := convertersandformatters.ValidateMSISDN(tt.args.msisdn, tt.args.verificationCode, tt.args.isUSSD, tt.args.firestoreClient)
+			got, err := converterandformatter.ValidateMSISDN(tt.args.msisdn, tt.args.verificationCode, tt.args.isUSSD, tt.args.firestoreClient)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("ValidateMSISDN() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -328,7 +328,7 @@ func TestValidateAndSaveMSISDN(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := convertersandformatters.ValidateAndSaveMSISDN(tt.args.msisdn, tt.args.verificationCode, tt.args.isUSSD, tt.args.optIn, tt.args.firestoreClient)
+			got, err := converterandformatter.ValidateAndSaveMSISDN(tt.args.msisdn, tt.args.verificationCode, tt.args.isUSSD, tt.args.optIn, tt.args.firestoreClient)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("ValidateAndSaveMSISDN() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -369,7 +369,7 @@ func TestStringSliceContains(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := convertersandformatters.StringSliceContains(tt.args.s, tt.args.e); got != tt.want {
+			if got := converterandformatter.StringSliceContains(tt.args.s, tt.args.e); got != tt.want {
 				t.Errorf("StringSliceContains() = %v, want %v", got, tt.want)
 			}
 		})
