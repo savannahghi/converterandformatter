@@ -205,7 +205,7 @@ func TestValidateMSISDN(t *testing.T) {
 	firebaseApp, err := fc.InitFirebase()
 	assert.Nil(t, err)
 
-	ctx := converterandformatter.GetAuthenticatedContext(t)
+	ctx := firebasetools.GetAuthenticatedContext(t)
 	firestoreClient, err := firebaseApp.Firestore(ctx)
 	assert.Nil(t, err)
 
