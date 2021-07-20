@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.com/savannahghi/converterandformatter.svg?branch=main)](https://travis-ci.com/savannahghi/converterandformatter)
+[![Maintained](https://img.shields.io/badge/Maintained-Actively-informational.svg?style=for-the-badge)](https://shields.io/)
+
 # Converters and Formatters
 `converterandformatter` is a utils package that contains helper functions that takes an input and transforms it to a different output
 
