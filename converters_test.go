@@ -3,6 +3,7 @@ package converterandformatter_test
 import (
 	"encoding/json"
 	"fmt"
+	"reflect"
 	"testing"
 
 	"github.com/savannahghi/converterandformatter"
@@ -164,5 +165,53 @@ func TestGenerateRandomEmail(t *testing.T) {
 	email := converterandformatter.GenerateRandomEmail()
 	if email == "" {
 		t.Errorf("can't generate a unique email")
+	}
+}
+
+func Test_convertInterfaceMap(t *testing.T) {
+	type args struct {
+		inp map[string]interface{}
+	}
+	tests := []struct {
+		name string
+		args args
+		want map[string]string
+	}{
+		{
+			name: "valid input",
+			args: args{
+				inp: map[string]interface{}{
+					"a": "1",
+				},
+			},
+			want: map[string]string{
+				"a": "1",
+			},
+		},
+		{
+			name: "nil input",
+			args: args{
+				inp: nil,
+			},
+			want: map[string]string{},
+		},
+		{
+			name: "wrong value type",
+			args: args{
+				inp: map[string]interface{}{
+					"a": 1,
+				},
+			},
+			want: map[string]string{
+				"a": "invalid string value: 1",
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := converterandformatter.ConvertInterfaceMap(tt.args.inp); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("convertInterfaceMap() = %v, want %v", got, tt.want)
+			}
+		})
 	}
 }
