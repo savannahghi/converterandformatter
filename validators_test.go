@@ -416,3 +416,39 @@ func TestStringSliceContains(t *testing.T) {
 		})
 	}
 }
+
+func TestIntSliceContains(t *testing.T) {
+	type args struct {
+		s []int
+		e int
+	}
+	tests := []struct {
+		name string
+		args args
+		want bool
+	}{
+		{
+			name: "slice which contains the int",
+			args: args{
+				s: []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 0},
+				e: 7,
+			},
+			want: true,
+		},
+		{
+			name: "slice which does NOT contain the int",
+			args: args{
+				s: []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 0},
+				e: 79,
+			},
+			want: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := converterandformatter.IntSliceContains(tt.args.s, tt.args.e); got != tt.want {
+				t.Errorf("IntSliceContains() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
