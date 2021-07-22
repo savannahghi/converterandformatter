@@ -69,3 +69,35 @@ func ConvertInterfaceMap(inp map[string]interface{}) map[string]string {
 	}
 	return out
 }
+
+// MapInterfaceToMapString converts a map with interface{} values to one with string
+// values.
+//
+// It is used to convert a GraphQL (gqlgen) input Map to a map of strings for APIs
+// that need map[string]string.
+func MapInterfaceToMapString(in map[string]interface{}) (map[string]string, error) {
+	out := map[string]string{}
+	for k, v := range in {
+		s, ok := v.(string)
+		if !ok {
+			return nil, fmt.Errorf("%v (%T) is not a string", v, v)
+		}
+		out[k] = s
+	}
+	return out, nil
+}
+
+// ConvertStringMap converts a map[string]string to a map[string]interface{}.
+//
+// This is done mostly in order to conform to the gqlgen Graphql Map scalar.
+func ConvertStringMap(inp map[string]string) map[string]interface{} {
+	out := make(map[string]interface{})
+	if inp == nil {
+		return out
+	}
+	for k, v := range inp {
+		val := interface{}(v)
+		out[k] = val
+	}
+	return out
+}
