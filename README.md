@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.com/savannahghi/converterandformatter.svg?branch=main)](https://travis-ci.com/savannahghi/converterandformatter)
 [![Maintained](https://img.shields.io/badge/Maintained-Actively-informational.svg?style=for-the-badge)](https://shields.io/)
+![Linting and Tests](https://github.com/savannahghi/converterandformatter/actions/workflows/ci.yml/badge.svg)
+[![Coverage Status](https://coveralls.io/repos/github/savannahghi/converterandformatter/badge.svg?branch=main)](https://coveralls.io/github/savannahghi/converterandformatter?branch=main)
 
 # Converters and Formatters
 `converterandformatter` is a utils package that contains helper functions that takes an input and transforms it to a different output
