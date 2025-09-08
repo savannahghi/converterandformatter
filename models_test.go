@@ -7,7 +7,6 @@ import (
 )
 
 func TestModelsIsEntity(t *testing.T) {
-
 	t12 := converterandformatter.USSDSessionLog{}
 	t12.IsEntity()
 
