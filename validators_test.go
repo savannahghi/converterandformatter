@@ -56,7 +56,6 @@ func TestMain(m *testing.M) {
 }
 
 func TestIsMSISDNValid(t *testing.T) {
-
 	tests := []struct {
 		name   string
 		msisdn string
@@ -213,7 +212,7 @@ func TestValidateMSISDN(t *testing.T) {
 	normalized, err := converterandformatter.NormalizeMSISDN(otpMsisdn)
 	assert.Nil(t, err)
 
-	validOtpCode := rand.Int()
+	validOtpCode := rand.Int() // nolint:gosec
 	validOtpData := map[string]interface{}{
 		"authorizationCode": strconv.Itoa(validOtpCode),
 		"isValid":           true,
@@ -224,7 +223,7 @@ func TestValidateMSISDN(t *testing.T) {
 	_, err = firebasetools.SaveDataToFirestore(firestoreClient, firebasetools.SuffixCollection(converterandformatter.OTPCollectionName), validOtpData)
 	assert.Nil(t, err)
 
-	invalidOtpCode := rand.Int()
+	invalidOtpCode := rand.Int() // nolint:gosec
 	invalidOtpData := map[string]interface{}{
 		"authorizationCode": strconv.Itoa(invalidOtpCode),
 		"isValid":           false,

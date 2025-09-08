@@ -6,7 +6,7 @@ type USSDSessionLog struct {
 	SessionID string `json:"sessionID" firestore:"sessionID"`
 }
 
-//IsEntity ...
+// IsEntity ...
 func (p PhoneOptIn) IsEntity() {}
 
 // PhoneOptIn is used to persist and manage phone communication whitelists
@@ -15,5 +15,5 @@ type PhoneOptIn struct {
 	OptedIn bool   `json:"optedIn" firestore:"optedIn"`
 }
 
-//IsEntity ...
+// IsEntity ...
 func (p USSDSessionLog) IsEntity() {}

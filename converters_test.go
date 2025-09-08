@@ -44,7 +44,6 @@ func TestStructToMap_Normal(t *testing.T) {
 }
 
 func TestStructToMap_FieldStruct(t *testing.T) {
-
 	sample := &SampleStruct{
 		Name: "John Doe",
 		ID:   "12121",
@@ -63,11 +62,9 @@ func TestStructToMap_FieldStruct(t *testing.T) {
 	assert.NoError(t, err)
 	fmt.Println(string(jbyt))
 	// Output: {"one_point":"yuhuhuu","sample":{"name":"John Doe","id":"12121"}}
-
 }
 
 func TestStructToMap_EmbeddedStruct(t *testing.T) {
-
 	sample := &SampleStruct{
 		Name: "John Doe",
 		ID:   "12121",

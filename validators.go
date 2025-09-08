@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"regexp"
+	"slices"
 	"strings"
 
 	"cloud.google.com/go/firestore"
@@ -47,8 +48,8 @@ func NormalizeMSISDN(msisdn string) (*string, error) {
 // is valid by verifying the code sent to it.
 func ValidateMSISDN(
 	msisdn, verificationCode string,
-	isUSSD bool, firestoreClient *firestore.Client) (string, error) {
-
+	isUSSD bool, firestoreClient *firestore.Client,
+) (string, error) {
 	// check the format
 	normalized, err := NormalizeMSISDN(msisdn)
 	if err != nil {
@@ -103,7 +104,8 @@ func ValidateMSISDN(
 // supplied verification code is not valid
 func ValidateAndSaveMSISDN(
 	msisdn, verificationCode string, isUSSD bool, optIn bool,
-	firestoreClient *firestore.Client) (string, error) {
+	firestoreClient *firestore.Client,
+) (string, error) {
 	validated, err := ValidateMSISDN(
 		msisdn, verificationCode, isUSSD, firestoreClient)
 	if err != nil {
@@ -123,22 +125,16 @@ func ValidateAndSaveMSISDN(
 	return validated, nil
 }
 
+// slices.Contains(s S, v E) makes the StringSliceContains and IntSliceContains functions
+// obsolete because it accepts a slice and value of any type.
+// They are only maintained for backward compatibility.
+
 // StringSliceContains tests if a string is contained in a slice of strings
 func StringSliceContains(s []string, e string) bool {
-	for _, a := range s {
-		if a == e {
-			return true
-		}
-	}
-	return false
+	return slices.Contains(s, e)
 }
 
-// IntSliceContains tests if a string is contained in a slice of strings
+// IntSliceContains tests if an int is contained in a slice of ints
 func IntSliceContains(s []int, e int) bool {
-	for _, a := range s {
-		if a == e {
-			return true
-		}
-	}
-	return false
+	return slices.Contains(s, e)
 }
